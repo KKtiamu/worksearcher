@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkListCR", "WorkListCR\WorkListCR.csproj", "{ACEC697C-2498-43B6-BD1E-F672D9172231}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "exportData", "exportData\exportData.csproj", "{09F7AF86-ECB9-466D-A7E6-00794760E8D0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{95736BD2-1111-489E-8396-65A6ACB2D0F5} = {95736BD2-1111-489E-8396-65A6ACB2D0F5}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{95736BD2-1111-489E-8396-65A6ACB2D0F5}"
 EndProject
