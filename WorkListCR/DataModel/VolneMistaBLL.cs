@@ -114,6 +114,147 @@ namespace DataModel
             }
         }
 
+        public static int saveCoObce(string coObce, string obce, string okres, string psc, string kodOkres)
+        {
+            dataClassWorkDataContext context = new dataClassWorkDataContext();
+            var subject = context.coobecs.Where(x => x.name == coObce && x.obec.name == obce).FirstOrDefault();
+            if(subject!=null)
+            {
+                return subject.id;
+            }
+            else
+            {
+                int idOkres = 0;
+                var okresSubject = context.okres.Where(x => x.name == okres).FirstOrDefault();
+                if(okresSubject!=null)
+                {
+                    idOkres = okresSubject.id;
+                }
+                else
+                {
+                    okre newOkres = new okre()
+                    {
+                        name = okres,
+                        kodUP = kodOkres
+                    };
+                    context.okres.InsertOnSubmit(newOkres);
+                    context.SubmitChanges();
+                    idOkres = newOkres.id;
+                }
+
+                int idObec = 0;
+                var obecSubject = context.obecs.Where(x=>x.name==obce && x.idOkres == idOkres).FirstOrDefault();
+                if(obecSubject!=null)
+                {
+                    idObec = obecSubject.id;
+                }
+                else
+                {
+                    obec newObec = new obec()
+                    {
+                        name = obce,
+                        idOkres = idOkres
+                    };
+                    context.obecs.InsertOnSubmit(newObec);
+                    context.SubmitChanges();
+                    idObec = newObec.id;
+                }
+
+                coobec newCoObec = new coobec()
+                {
+                    name=coObce,
+                    idObec=idObec,
+                    psc=psc
+                };
+                context.coobecs.InsertOnSubmit(newCoObec);
+                context.SubmitChanges();
+                return newCoObec.id;
+            }
+        }
+
+        public static int saveJazyk(string kodJazyka, string jazykName, string kodUroven, string uroven)
+        {
+            int idJazyk = 0;
+            dataClassWorkDataContext context = new dataClassWorkDataContext();
+            var jazykSubject = context.jazyks.Where(x=>x.name== jazykName && x.uroven==uroven).FirstOrDefault();
+            if(jazykSubject!=null)
+            {
+                idJazyk = jazykSubject.id;
+            } 
+            else
+            {
+                jazyk newJazyk = new jazyk()
+                {
+                    name = jazykName,
+                    uroven = uroven,
+                    kodUP=kodJazyka,
+                    urovenId=kodUroven
+                };
+                context.jazyks.InsertOnSubmit(newJazyk);
+                context.SubmitChanges();
+                idJazyk = newJazyk.id;
+            }
+            return idJazyk;
+        }
+
+        public static int getTypeZamestn(string kodPolozky)
+        {
+            dataClassWorkDataContext context = new dataClassWorkDataContext();
+            return context.typZamests.Where(x => x.kod == kodPolozky).FirstOrDefault().id;
+        }
+
+        public static int getPracVztah(string kodPolozky)
+        {
+            dataClassWorkDataContext context = new dataClassWorkDataContext();
+            return context.pracVztahs.Where(x => x.kod == kodPolozky).FirstOrDefault().id;
+        }
+
+        public static bool saveVM(int coobec, string jazyk, string pracVztah, int prof, int smena, string typZ,
+            int uradPrace, int vzdelani, DateTime aktualDate, string firm, string kodVacancy, string kontaktFirm,
+            int pocetMK, int pocetZK, int pocetMist, string poznamka, int mzdaOd, int mzdaDo, DateTime praceOd, DateTime praceDo)
+        {
+            try
+            {
+                dataClassWorkDataContext context = new dataClassWorkDataContext();
+                var oldVM = context.VMs.Where(x => x.kodUP == kodVacancy).FirstOrDefault();
+                if(oldVM!=null)
+                {
+                    context.VMs.DeleteOnSubmit(oldVM);
+                    context.SubmitChanges();
+                }
+                VM newVM = new VM
+                {
+                    idObce = coobec,
+                    idJazyka = jazyk,
+                    idPracVztah = pracVztah,
+                    idProf = prof,
+                    idSmena = smena,
+                    idTyp = typZ,
+                    idUP = uradPrace,
+                    idVzdelani = vzdelani,
+                    dateAktual = aktualDate,
+                    firma = firm,
+                    kodUP = kodVacancy,
+                    kontakt = kontaktFirm,
+                    modryKarty = pocetMK,
+                    zamestnKarty = pocetZK,
+                    volnychMist = pocetMist,
+                    poznamka = poznamka,
+                };
+                if (mzdaOd > 0) { newVM.mzdaOd = mzdaOd; }
+                if (mzdaDo > 0) { newVM.mzdaDo = mzdaDo; }
+                if (praceOd.Year == 2015) { newVM.terminOd = praceOd; }
+                if (praceDo.Year == 2015) { newVM.terminDo = praceDo; }
+                context.VMs.InsertOnSubmit(newVM);
+                context.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
     }
 }

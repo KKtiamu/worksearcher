@@ -90,8 +90,48 @@ namespace exportData
                     idProf = DataModel.VolneMistaBLL.saveObor(prof[0].Attributes["kod"].Value, prof[0].Attributes["nazev"].Value);
                 }
 
+                int idCoobce = 0;
+                var city = vacancy.GetElementsByTagName("PRACOVISTE");
+                if(city.Count>0)
+                {
+                    if(city[0].Attributes["neurcitaAdresa"].Value=="N")
+                    {
+                        idCoobce = DataModel.VolneMistaBLL.saveCoObce(city[0].Attributes["cobce"].Value, city[0].Attributes["obec"].Value,
+                            city[0].Attributes["okres"].Value, city[0].Attributes["psc"].Value, city[0].Attributes["okresKod"].Value);
+                    }
+                }
 
+                string jazyky = "";
+                var jazyk = vacancy.GetElementsByTagName("JAZYK");
+                for(int i=0; i<jazyk.Count; i++)
+                {
+                    jazyky += DataModel.VolneMistaBLL.saveJazyk(jazyk[i].Attributes["kod"].Value, jazyk[i].Attributes["nazev"].Value,
+                            jazyk[i].Attributes["urovenKod"].Value, jazyk[i].Attributes["uroven"].Value).ToString()+",";
+                }
 
+                string typeZamest = "";
+                var typeZ = vacancy.GetElementsByTagName("VHODNE_PRO");
+                if(typeZ.Count>0)
+                {
+                    typeZamest+=((typeZ[0].Attributes["absolventySs"].Value == "A") ? DataModel.VolneMistaBLL.getTypeZamestn("absolventySs").ToString() + "," : "");
+                    typeZamest += ((typeZ[0].Attributes["absolventyVs"].Value == "A") ? DataModel.VolneMistaBLL.getTypeZamestn("absolventyVs").ToString() + "," : "");
+                    typeZamest += ((typeZ[0].Attributes["ozp"].Value == "A") ? DataModel.VolneMistaBLL.getTypeZamestn("ozp").ToString() + "," : "");
+                    typeZamest += ((typeZ[0].Attributes["bezbar"].Value == "A") ? DataModel.VolneMistaBLL.getTypeZamestn("bezbar").ToString() + "," : "");
+                    typeZamest += ((typeZ[0].Attributes["cizince"].Value == "A") ? DataModel.VolneMistaBLL.getTypeZamestn("cizince").ToString() + "," : "");
+                    typeZamest += ((typeZ[0].Attributes["azylanty"].Value == "A") ? DataModel.VolneMistaBLL.getTypeZamestn("azylanty").ToString() + "," : "");
+                }
+
+                string pracVztahy = "";
+                var pracV = vacancy.GetElementsByTagName("PRACPRAVNI_VZTAH");
+                if(pracV.Count>0)
+                {
+                    pracVztahy += ((pracV[0].Attributes["ppvztahPpPlny"].Value == "A") ? DataModel.VolneMistaBLL.getPracVztah("ppvztahPpPlny").ToString() + "," : "");
+                    pracVztahy += ((pracV[0].Attributes["ppvztahPpZkrac"].Value == "A") ? DataModel.VolneMistaBLL.getPracVztah("ppvztahPpZkrac").ToString() + "," : "");
+                    pracVztahy += ((pracV[0].Attributes["ppvztahSp"].Value == "A") ? DataModel.VolneMistaBLL.getPracVztah("ppvztahSp").ToString() + "," : "");
+                    pracVztahy += ((pracV[0].Attributes["ppvztahDpp"].Value == "A") ? DataModel.VolneMistaBLL.getPracVztah("ppvztahDpp").ToString() + "," : "");
+                    pracVztahy += ((pracV[0].Attributes["ppvztahDpc"].Value == "A") ? DataModel.VolneMistaBLL.getPracVztah("ppvztahDpc").ToString() + "," : "");
+                    pracVztahy += ((pracV[0].Attributes["tydneHodinMin"].Value == "A") ? DataModel.VolneMistaBLL.getPracVztah("tydneHodinMin").ToString() + "," : "");
+                }
             }
         }
     }

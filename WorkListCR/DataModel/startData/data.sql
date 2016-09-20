@@ -172,6 +172,8 @@ CREATE TABLE [dbo].[jazyk](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[kodUP] [nvarchar](10) NOT NULL,
 	[name] [nvarchar](50) NOT NULL,
+	[uroven] [nvarchar](50) NOT NULL,
+	[urovenId] [nvarchar](10) NOT NULL,
  CONSTRAINT [PK_jazyk] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -235,6 +237,7 @@ GO
 CREATE TABLE [dbo].[pracVztah](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[name] [nvarchar](50) NOT NULL,
+	[kod] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_pracVztah] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -283,6 +286,7 @@ GO
 CREATE TABLE [dbo].[typZamest](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[name] [nvarchar](50) NOT NULL,
+	[kod] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_typZamest] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -316,17 +320,16 @@ CREATE TABLE [dbo].[VM](
 	[kodUP] [nvarchar](10) NOT NULL,
 	[idProf] [int] NOT NULL,
 	[firma] [nvarchar](50) NOT NULL,
-	[adres] [nvarchar](250) NOT NULL,
 	[idSmena] [int] NULL,
 	[idVzdelani] [int] NULL,
-	[idPracVztah] [int] NULL,
+	[idPracVztah] [nvarchar](50) NULL,
 	[idObce] [int] NULL,
 	[kontakt] [nvarchar](250) NULL,
 	[mzdaOd] [int] NULL,
 	[mzdaDo] [int] NULL,
-	[od] [date] NULL,
-	[do] [date] NULL,
-	[idTyp] [int] NULL,
+	[terminOd] [date] NULL,
+	[terminDo] [date] NULL,
+	[idTyp] [nvarchar](50) NULL,
 	[idUP] [int] NOT NULL,
 	[modryKarty] [int] NULL,
 	[zamestnKarty] [int] NULL,
@@ -359,20 +362,20 @@ CREATE TABLE [dbo].[vzdelan](
 GO
 SET IDENTITY_INSERT [dbo].[pracVztah] ON 
 
-INSERT [dbo].[pracVztah] ([id], [name]) VALUES (1, N'Plný')
-INSERT [dbo].[pracVztah] ([id], [name]) VALUES (2, N'Zkrácený')
-INSERT [dbo].[pracVztah] ([id], [name]) VALUES (3, N'dpp')
-INSERT [dbo].[pracVztah] ([id], [name]) VALUES (4, N'dpc')
-INSERT [dbo].[pracVztah] ([id], [name]) VALUES (5, N'Služební poměr')
+INSERT [dbo].[pracVztah] ([id], [name], [kod]) VALUES (1, N'Plný', N'Plný')
+INSERT [dbo].[pracVztah] ([id], [name], [kod]) VALUES (2, N'Zkrácený', N'Zkrácený')
+INSERT [dbo].[pracVztah] ([id], [name], [kod]) VALUES (3, N'dpp', N'dpp')
+INSERT [dbo].[pracVztah] ([id], [name], [kod]) VALUES (4, N'dpc', N'dpc')
+INSERT [dbo].[pracVztah] ([id], [name], [kod]) VALUES (5, N'Služební poměr', N'Služební poměr')
 SET IDENTITY_INSERT [dbo].[pracVztah] OFF
 SET IDENTITY_INSERT [dbo].[typZamest] ON 
 
-INSERT [dbo].[typZamest] ([id], [name]) VALUES (1, N'absolventySs')
-INSERT [dbo].[typZamest] ([id], [name]) VALUES (2, N'absolventyVs')
-INSERT [dbo].[typZamest] ([id], [name]) VALUES (3, N'ozp')
-INSERT [dbo].[typZamest] ([id], [name]) VALUES (4, N'bezbar')
-INSERT [dbo].[typZamest] ([id], [name]) VALUES (5, N'cizince')
-INSERT [dbo].[typZamest] ([id], [name]) VALUES (6, N'azylanty')
+INSERT [dbo].[typZamest] ([id], [name], [kod]) VALUES (1, N'absolventySs', N'absolventySs')
+INSERT [dbo].[typZamest] ([id], [name], [kod]) VALUES (2, N'absolventyVs', N'absolventyVs')
+INSERT [dbo].[typZamest] ([id], [name], [kod]) VALUES (3, N'ozp', N'ozp')
+INSERT [dbo].[typZamest] ([id], [name], [kod]) VALUES (4, N'bezbar', N'bezbar')
+INSERT [dbo].[typZamest] ([id], [name], [kod]) VALUES (5, N'cizince', N'cizince')
+INSERT [dbo].[typZamest] ([id], [name], [kod]) VALUES (6, N'azylanty', N'azylanty')
 SET IDENTITY_INSERT [dbo].[typZamest] OFF
 ALTER TABLE [dbo].[coobec]  WITH CHECK ADD  CONSTRAINT [FK_coobec_obec] FOREIGN KEY([idObec])
 REFERENCES [dbo].[obec] ([id])

@@ -22,6 +22,7 @@ namespace DataModel
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="workSearсher")]
 	public partial class dataClassWorkDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -38,9 +39,6 @@ namespace DataModel
     partial void Insertfile(file instance);
     partial void Updatefile(file instance);
     partial void Deletefile(file instance);
-    partial void Insertjazyk(jazyk instance);
-    partial void Updatejazyk(jazyk instance);
-    partial void Deletejazyk(jazyk instance);
     partial void Insertobec(obec instance);
     partial void Updateobec(obec instance);
     partial void Deleteobec(obec instance);
@@ -50,21 +48,24 @@ namespace DataModel
     partial void Insertokre(okre instance);
     partial void Updateokre(okre instance);
     partial void Deleteokre(okre instance);
-    partial void InsertpracVztah(pracVztah instance);
-    partial void UpdatepracVztah(pracVztah instance);
-    partial void DeletepracVztah(pracVztah instance);
     partial void Insertprof(prof instance);
     partial void Updateprof(prof instance);
     partial void Deleteprof(prof instance);
     partial void Insertsmeny(smeny instance);
     partial void Updatesmeny(smeny instance);
     partial void Deletesmeny(smeny instance);
-    partial void InserttypZamest(typZamest instance);
-    partial void UpdatetypZamest(typZamest instance);
-    partial void DeletetypZamest(typZamest instance);
     partial void InserturadPrace(uradPrace instance);
     partial void UpdateuradPrace(uradPrace instance);
     partial void DeleteuradPrace(uradPrace instance);
+    partial void Insertjazyk(jazyk instance);
+    partial void Updatejazyk(jazyk instance);
+    partial void Deletejazyk(jazyk instance);
+    partial void InserttypZamest(typZamest instance);
+    partial void UpdatetypZamest(typZamest instance);
+    partial void DeletetypZamest(typZamest instance);
+    partial void InsertpracVztah(pracVztah instance);
+    partial void UpdatepracVztah(pracVztah instance);
+    partial void DeletepracVztah(pracVztah instance);
     partial void InsertVM(VM instance);
     partial void UpdateVM(VM instance);
     partial void DeleteVM(VM instance);
@@ -124,14 +125,6 @@ namespace DataModel
 			}
 		}
 		
-		public System.Data.Linq.Table<jazyk> jazyks
-		{
-			get
-			{
-				return this.GetTable<jazyk>();
-			}
-		}
-		
 		public System.Data.Linq.Table<obec> obecs
 		{
 			get
@@ -156,14 +149,6 @@ namespace DataModel
 			}
 		}
 		
-		public System.Data.Linq.Table<pracVztah> pracVztahs
-		{
-			get
-			{
-				return this.GetTable<pracVztah>();
-			}
-		}
-		
 		public System.Data.Linq.Table<prof> profs
 		{
 			get
@@ -180,6 +165,22 @@ namespace DataModel
 			}
 		}
 		
+		public System.Data.Linq.Table<uradPrace> uradPraces
+		{
+			get
+			{
+				return this.GetTable<uradPrace>();
+			}
+		}
+		
+		public System.Data.Linq.Table<jazyk> jazyks
+		{
+			get
+			{
+				return this.GetTable<jazyk>();
+			}
+		}
+		
 		public System.Data.Linq.Table<typZamest> typZamests
 		{
 			get
@@ -188,11 +189,11 @@ namespace DataModel
 			}
 		}
 		
-		public System.Data.Linq.Table<uradPrace> uradPraces
+		public System.Data.Linq.Table<pracVztah> pracVztahs
 		{
 			get
 			{
-				return this.GetTable<uradPrace>();
+				return this.GetTable<pracVztah>();
 			}
 		}
 		
@@ -559,116 +560,6 @@ namespace DataModel
 					this._id = value;
 					this.SendPropertyChanged("id");
 					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.jazyk")]
-	public partial class jazyk : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _kodUP;
-		
-		private string _name;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnkodUPChanging(string value);
-    partial void OnkodUPChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    #endregion
-		
-		public jazyk()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kodUP", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
-		public string kodUP
-		{
-			get
-			{
-				return this._kodUP;
-			}
-			set
-			{
-				if ((this._kodUP != value))
-				{
-					this.OnkodUPChanging(value);
-					this.SendPropertyChanging();
-					this._kodUP = value;
-					this.SendPropertyChanged("kodUP");
-					this.OnkodUPChanged();
 				}
 			}
 		}
@@ -1169,92 +1060,6 @@ namespace DataModel
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.pracVztah")]
-	public partial class pracVztah : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    #endregion
-		
-		public pracVztah()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.prof")]
 	public partial class prof : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1568,92 +1373,6 @@ namespace DataModel
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.typZamest")]
-	public partial class typZamest : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    #endregion
-		
-		public typZamest()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.uradPrace")]
 	public partial class uradPrace : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1792,6 +1511,384 @@ namespace DataModel
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.jazyk")]
+	public partial class jazyk : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _kodUP;
+		
+		private string _name;
+		
+		private string _uroven;
+		
+		private string _urovenId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnkodUPChanging(string value);
+    partial void OnkodUPChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnurovenChanging(string value);
+    partial void OnurovenChanged();
+    partial void OnurovenIdChanging(string value);
+    partial void OnurovenIdChanged();
+    #endregion
+		
+		public jazyk()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kodUP", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string kodUP
+		{
+			get
+			{
+				return this._kodUP;
+			}
+			set
+			{
+				if ((this._kodUP != value))
+				{
+					this.OnkodUPChanging(value);
+					this.SendPropertyChanging();
+					this._kodUP = value;
+					this.SendPropertyChanged("kodUP");
+					this.OnkodUPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uroven", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string uroven
+		{
+			get
+			{
+				return this._uroven;
+			}
+			set
+			{
+				if ((this._uroven != value))
+				{
+					this.OnurovenChanging(value);
+					this.SendPropertyChanging();
+					this._uroven = value;
+					this.SendPropertyChanged("uroven");
+					this.OnurovenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_urovenId", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string urovenId
+		{
+			get
+			{
+				return this._urovenId;
+			}
+			set
+			{
+				if ((this._urovenId != value))
+				{
+					this.OnurovenIdChanging(value);
+					this.SendPropertyChanging();
+					this._urovenId = value;
+					this.SendPropertyChanged("urovenId");
+					this.OnurovenIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.typZamest")]
+	public partial class typZamest : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _kod;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnkodChanging(string value);
+    partial void OnkodChanged();
+    #endregion
+		
+		public typZamest()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kod", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string kod
+		{
+			get
+			{
+				return this._kod;
+			}
+			set
+			{
+				if ((this._kod != value))
+				{
+					this.OnkodChanging(value);
+					this.SendPropertyChanging();
+					this._kod = value;
+					this.SendPropertyChanged("kod");
+					this.OnkodChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.pracVztah")]
+	public partial class pracVztah : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _kod;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnkodChanging(string value);
+    partial void OnkodChanged();
+    #endregion
+		
+		public pracVztah()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kod", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string kod
+		{
+			get
+			{
+				return this._kod;
+			}
+			set
+			{
+				if ((this._kod != value))
+				{
+					this.OnkodChanging(value);
+					this.SendPropertyChanging();
+					this._kod = value;
+					this.SendPropertyChanged("kod");
+					this.OnkodChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VM")]
 	public partial class VM : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1806,13 +1903,11 @@ namespace DataModel
 		
 		private string _firma;
 		
-		private string _adres;
-		
 		private System.Nullable<int> _idSmena;
 		
 		private System.Nullable<int> _idVzdelani;
 		
-		private System.Nullable<int> _idPracVztah;
+		private string _idPracVztah;
 		
 		private System.Nullable<int> _idObce;
 		
@@ -1822,11 +1917,11 @@ namespace DataModel
 		
 		private System.Nullable<int> _mzdaDo;
 		
-		private System.Nullable<System.DateTime> _od;
+		private System.Nullable<System.DateTime> _terminOd;
 		
-		private System.Nullable<System.DateTime> _do;
+		private System.Nullable<System.DateTime> _terminDo;
 		
-		private System.Nullable<int> _idTyp;
+		private string _idTyp;
 		
 		private int _idUP;
 		
@@ -1860,13 +1955,11 @@ namespace DataModel
     partial void OnidProfChanged();
     partial void OnfirmaChanging(string value);
     partial void OnfirmaChanged();
-    partial void OnadresChanging(string value);
-    partial void OnadresChanged();
     partial void OnidSmenaChanging(System.Nullable<int> value);
     partial void OnidSmenaChanged();
     partial void OnidVzdelaniChanging(System.Nullable<int> value);
     partial void OnidVzdelaniChanged();
-    partial void OnidPracVztahChanging(System.Nullable<int> value);
+    partial void OnidPracVztahChanging(string value);
     partial void OnidPracVztahChanged();
     partial void OnidObceChanging(System.Nullable<int> value);
     partial void OnidObceChanged();
@@ -1876,11 +1969,11 @@ namespace DataModel
     partial void OnmzdaOdChanged();
     partial void OnmzdaDoChanging(System.Nullable<int> value);
     partial void OnmzdaDoChanged();
-    partial void OnodChanging(System.Nullable<System.DateTime> value);
-    partial void OnodChanged();
-    partial void OndoChanging(System.Nullable<System.DateTime> value);
-    partial void OndoChanged();
-    partial void OnidTypChanging(System.Nullable<int> value);
+    partial void OnterminOdChanging(System.Nullable<System.DateTime> value);
+    partial void OnterminOdChanged();
+    partial void OnterminDoChanging(System.Nullable<System.DateTime> value);
+    partial void OnterminDoChanged();
+    partial void OnidTypChanging(string value);
     partial void OnidTypChanged();
     partial void OnidUPChanging(int value);
     partial void OnidUPChanged();
@@ -1990,26 +2083,6 @@ namespace DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_adres", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
-		public string adres
-		{
-			get
-			{
-				return this._adres;
-			}
-			set
-			{
-				if ((this._adres != value))
-				{
-					this.OnadresChanging(value);
-					this.SendPropertyChanging();
-					this._adres = value;
-					this.SendPropertyChanged("adres");
-					this.OnadresChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idSmena", DbType="Int")]
 		public System.Nullable<int> idSmena
 		{
@@ -2050,8 +2123,8 @@ namespace DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPracVztah", DbType="Int")]
-		public System.Nullable<int> idPracVztah
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPracVztah", DbType="NVarChar(50)")]
+		public string idPracVztah
 		{
 			get
 			{
@@ -2154,48 +2227,48 @@ namespace DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_od", DbType="Date")]
-		public System.Nullable<System.DateTime> od
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_terminOd", DbType="Date")]
+		public System.Nullable<System.DateTime> terminOd
 		{
 			get
 			{
-				return this._od;
+				return this._terminOd;
 			}
 			set
 			{
-				if ((this._od != value))
+				if ((this._terminOd != value))
 				{
-					this.OnodChanging(value);
+					this.OnterminOdChanging(value);
 					this.SendPropertyChanging();
-					this._od = value;
-					this.SendPropertyChanged("od");
-					this.OnodChanged();
+					this._terminOd = value;
+					this.SendPropertyChanged("terminOd");
+					this.OnterminOdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="do", Storage="_do", DbType="Date")]
-		public System.Nullable<System.DateTime> @do
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_terminDo", DbType="Date")]
+		public System.Nullable<System.DateTime> terminDo
 		{
 			get
 			{
-				return this._do;
+				return this._terminDo;
 			}
 			set
 			{
-				if ((this._do != value))
+				if ((this._terminDo != value))
 				{
-					this.OndoChanging(value);
+					this.OnterminDoChanging(value);
 					this.SendPropertyChanging();
-					this._do = value;
-					this.SendPropertyChanged("@do");
-					this.OndoChanged();
+					this._terminDo = value;
+					this.SendPropertyChanged("terminDo");
+					this.OnterminDoChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTyp", DbType="Int")]
-		public System.Nullable<int> idTyp
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTyp", DbType="NVarChar(50)")]
+		public string idTyp
 		{
 			get
 			{

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Class="dataClassWorkDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="workSearсher" Class="dataClassWorkDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=TIAMU;Initial Catalog=workSearсher;Integrated Security=True" SettingsObjectName="DataModel.Properties.Settings" SettingsPropertyName="connectString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.coobec" Member="coobecs">
     <Type Name="coobec">
@@ -20,13 +20,6 @@
   <Table Name="dbo.files" Member="files">
     <Type Name="file">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.jazyk" Member="jazyks">
-    <Type Name="jazyk">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="kodUP" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
@@ -55,12 +48,6 @@
       <Association Name="okre_obec" Member="obecs" ThisKey="id" OtherKey="idOkres" Type="obec" />
     </Type>
   </Table>
-  <Table Name="dbo.pracVztah" Member="pracVztahs">
-    <Type Name="pracVztah">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.prof" Member="profs">
     <Type Name="prof">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -78,12 +65,6 @@
       <Column Name="kodUP" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.typZamest" Member="typZamests">
-    <Type Name="typZamest">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.uradPrace" Member="uradPraces">
     <Type Name="uradPrace">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -92,23 +73,45 @@
       <Association Name="uradPrace_VM" Member="VMs" ThisKey="id" OtherKey="idUP" Type="VM" />
     </Type>
   </Table>
+  <Table Name="dbo.jazyk" Member="jazyks">
+    <Type Name="jazyk">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="kodUP" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="uroven" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="urovenId" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.typZamest" Member="typZamests">
+    <Type Name="typZamest">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="kod" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pracVztah" Member="pracVztahs">
+    <Type Name="pracVztah">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="kod" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.VM" Member="VMs">
     <Type Name="VM">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="kodUP" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="idProf" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="firma" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="adres" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="idSmena" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="idVzdelani" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="idPracVztah" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idPracVztah" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="idObce" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="kontakt" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="mzdaOd" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="mzdaDo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="od" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="do" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="idTyp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="terminOd" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="terminDo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="idTyp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="idUP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="modryKarty" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="zamestnKarty" Type="System.Int32" DbType="Int" CanBeNull="true" />
