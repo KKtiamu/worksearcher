@@ -102,6 +102,10 @@ namespace DataModel
             }
             else
             {
+                if (idObor==0)
+                {
+                    idObor = context.obors.Where(x => x.kodUp == "0").FirstOrDefault().id;
+                }
                 DataModel.prof newsubject = new DataModel.prof()
                 {
                     kodUP = kod,
@@ -114,13 +118,13 @@ namespace DataModel
             }
         }
 
-        public static int saveCoObce(string coObce, string obce, string okres, string psc, string kodOkres)
+        public static string saveCoObce(string coObce, string obce, string okres, string psc, string kodOkres)
         {
             dataClassWorkDataContext context = new dataClassWorkDataContext();
             var subject = context.coobecs.Where(x => x.name == coObce && x.obec.name == obce).FirstOrDefault();
             if(subject!=null)
             {
-                return subject.id;
+                return subject.id+","+subject.obec.id+","+subject.obec.okre.id;
             }
             else
             {
@@ -160,15 +164,22 @@ namespace DataModel
                     idObec = newObec.id;
                 }
 
-                coobec newCoObec = new coobec()
+                if (coObce != "")
                 {
-                    name=coObce,
-                    idObec=idObec,
-                    psc=psc
-                };
-                context.coobecs.InsertOnSubmit(newCoObec);
-                context.SubmitChanges();
-                return newCoObec.id;
+                    coobec newCoObec = new coobec()
+                    {
+                        name = coObce,
+                        idObec = idObec,
+                        psc = psc
+                    };
+                    context.coobecs.InsertOnSubmit(newCoObec);
+                    context.SubmitChanges();
+                    return newCoObec.id+","+idObec+","+idOkres;
+                }
+                else
+                {
+                    return "0," + idObec + "," + idOkres;
+                }
             }
         }
 
@@ -209,9 +220,9 @@ namespace DataModel
             return context.pracVztahs.Where(x => x.kod == kodPolozky).FirstOrDefault().id;
         }
 
-        public static bool saveVM(int coobec, string jazyk, string pracVztah, int prof, int smena, string typZ,
+        public static bool saveVM(string coobec, string jazyk, string pracVztah, int prof, int smena, string typZ,
             int uradPrace, int vzdelani, DateTime aktualDate, string firm, string kodVacancy, string kontaktFirm,
-            int pocetMK, int pocetZK, int pocetMist, string poznamka, int mzdaOd, int mzdaDo, DateTime praceOd, DateTime praceDo)
+            int pocetMK, int pocetZK, int pocetMist, string poznamka, decimal mzdaOd, decimal mzdaDo, string mzdaType, DateTime praceOd, DateTime praceDo)
         {
             try
             {
@@ -243,13 +254,28 @@ namespace DataModel
                 };
                 if (mzdaOd > 0) { newVM.mzdaOd = mzdaOd; }
                 if (mzdaDo > 0) { newVM.mzdaDo = mzdaDo; }
-                if (praceOd.Year == 2015) { newVM.terminOd = praceOd; }
-                if (praceDo.Year == 2015) { newVM.terminDo = praceDo; }
+                if (mzdaType != "") { newVM.mzdaType = mzdaType; }
+                if (praceOd.Year != 2015) { newVM.terminOd = praceOd; }
+                if (praceDo.Year != 2015) { newVM.terminDo = praceDo; }
                 context.VMs.InsertOnSubmit(newVM);
                 context.SubmitChanges();
                 return true;
             }
-            catch
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public static bool isExist(string kodVacancy)
+        {
+            dataClassWorkDataContext context = new dataClassWorkDataContext();
+            var oldVM = context.VMs.Where(x => x.kodUP == kodVacancy).FirstOrDefault();
+            if (oldVM != null)
+            {
+                return true;
+            }
+            else
             {
                 return false;
             }

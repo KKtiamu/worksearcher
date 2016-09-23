@@ -368,6 +368,16 @@ INSERT [dbo].[pracVztah] ([id], [name], [kod]) VALUES (3, N'dpp', N'dpp')
 INSERT [dbo].[pracVztah] ([id], [name], [kod]) VALUES (4, N'dpc', N'dpc')
 INSERT [dbo].[pracVztah] ([id], [name], [kod]) VALUES (5, N'Služební poměr', N'Služební poměr')
 SET IDENTITY_INSERT [dbo].[pracVztah] OFF
+
+SET IDENTITY_INSERT [dbo].[obor] ON 
+INSERT INTO [dbo].[obor]
+           ([name]
+           ,[kodUp])
+     VALUES
+           ('null'
+           ,'0')
+SET IDENTITY_INSERT [dbo].[obor] OFF
+
 SET IDENTITY_INSERT [dbo].[typZamest] ON 
 
 INSERT [dbo].[typZamest] ([id], [name], [kod]) VALUES (1, N'absolventySs', N'absolventySs')
