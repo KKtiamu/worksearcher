@@ -29,6 +29,7 @@
       <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="uroven" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="urovenId" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="jazyk_relVmJazyk" Member="relVmJazyks" ThisKey="id" OtherKey="idJazyk" Type="relVmJazyk" />
     </Type>
   </Table>
   <Table Name="dbo.obec" Member="obecs">
@@ -85,6 +86,7 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="kod" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="typZamest_relVmTypZ" Member="relVmTypZs" ThisKey="id" OtherKey="idTypZ" Type="relVmTypZ" />
     </Type>
   </Table>
   <Table Name="dbo.uradPrace" Member="uradPraces">
@@ -93,6 +95,24 @@
       <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="kodUP" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Association Name="uradPrace_VM" Member="VMs" ThisKey="id" OtherKey="idUP" Type="VM" />
+    </Type>
+  </Table>
+  <Table Name="dbo.relVmJazyk" Member="relVmJazyks">
+    <Type Name="relVmJazyk">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idVM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idJazyk" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="jazyk_relVmJazyk" Member="jazyk" ThisKey="idJazyk" OtherKey="id" Type="jazyk" IsForeignKey="true" />
+      <Association Name="VM_relVmJazyk" Member="VM" ThisKey="idVM" OtherKey="id" Type="VM" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.relVmTypZ" Member="relVmTypZs">
+    <Type Name="relVmTypZ">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idVM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idTypZ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="typZamest_relVmTypZ" Member="typZamest" ThisKey="idTypZ" OtherKey="id" Type="typZamest" IsForeignKey="true" />
+      <Association Name="VM_relVmTypZ" Member="VM" ThisKey="idVM" OtherKey="id" Type="VM" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.VM" Member="VMs">
@@ -111,14 +131,14 @@
       <Column Name="mzdaType" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="terminOd" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="terminDo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="idTyp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="idUP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="modryKarty" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="zamestnKarty" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="dateAktual" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="volnychMist" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idJazyka" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="poznamka" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="VM_relVmJazyk" Member="relVmJazyks" ThisKey="id" OtherKey="idVM" Type="relVmJazyk" />
+      <Association Name="VM_relVmTypZ" Member="relVmTypZs" ThisKey="id" OtherKey="idVM" Type="relVmTypZ" />
       <Association Name="prof_VM" Member="prof" ThisKey="idProf" OtherKey="id" Type="prof" IsForeignKey="true" />
       <Association Name="uradPrace_VM" Member="uradPrace" ThisKey="idUP" OtherKey="id" Type="uradPrace" IsForeignKey="true" />
     </Type>

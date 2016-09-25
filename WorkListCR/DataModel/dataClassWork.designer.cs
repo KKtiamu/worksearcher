@@ -66,6 +66,12 @@ namespace DataModel
     partial void InserturadPrace(uradPrace instance);
     partial void UpdateuradPrace(uradPrace instance);
     partial void DeleteuradPrace(uradPrace instance);
+    partial void InsertrelVmJazyk(relVmJazyk instance);
+    partial void UpdaterelVmJazyk(relVmJazyk instance);
+    partial void DeleterelVmJazyk(relVmJazyk instance);
+    partial void InsertrelVmTypZ(relVmTypZ instance);
+    partial void UpdaterelVmTypZ(relVmTypZ instance);
+    partial void DeleterelVmTypZ(relVmTypZ instance);
     partial void InsertVM(VM instance);
     partial void UpdateVM(VM instance);
     partial void DeleteVM(VM instance);
@@ -194,6 +200,22 @@ namespace DataModel
 			get
 			{
 				return this.GetTable<uradPrace>();
+			}
+		}
+		
+		public System.Data.Linq.Table<relVmJazyk> relVmJazyks
+		{
+			get
+			{
+				return this.GetTable<relVmJazyk>();
+			}
+		}
+		
+		public System.Data.Linq.Table<relVmTypZ> relVmTypZs
+		{
+			get
+			{
+				return this.GetTable<relVmTypZ>();
 			}
 		}
 		
@@ -593,6 +615,8 @@ namespace DataModel
 		
 		private string _urovenId;
 		
+		private EntitySet<relVmJazyk> _relVmJazyks;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -611,6 +635,7 @@ namespace DataModel
 		
 		public jazyk()
 		{
+			this._relVmJazyks = new EntitySet<relVmJazyk>(new Action<relVmJazyk>(this.attach_relVmJazyks), new Action<relVmJazyk>(this.detach_relVmJazyks));
 			OnCreated();
 		}
 		
@@ -714,6 +739,19 @@ namespace DataModel
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="jazyk_relVmJazyk", Storage="_relVmJazyks", ThisKey="id", OtherKey="idJazyk")]
+		public EntitySet<relVmJazyk> relVmJazyks
+		{
+			get
+			{
+				return this._relVmJazyks;
+			}
+			set
+			{
+				this._relVmJazyks.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -732,6 +770,18 @@ namespace DataModel
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_relVmJazyks(relVmJazyk entity)
+		{
+			this.SendPropertyChanging();
+			entity.jazyk = this;
+		}
+		
+		private void detach_relVmJazyks(relVmJazyk entity)
+		{
+			this.SendPropertyChanging();
+			entity.jazyk = null;
 		}
 	}
 	
@@ -1625,6 +1675,8 @@ namespace DataModel
 		
 		private string _kod;
 		
+		private EntitySet<relVmTypZ> _relVmTypZs;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1639,6 +1691,7 @@ namespace DataModel
 		
 		public typZamest()
 		{
+			this._relVmTypZs = new EntitySet<relVmTypZ>(new Action<relVmTypZ>(this.attach_relVmTypZs), new Action<relVmTypZ>(this.detach_relVmTypZs));
 			OnCreated();
 		}
 		
@@ -1702,6 +1755,19 @@ namespace DataModel
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="typZamest_relVmTypZ", Storage="_relVmTypZs", ThisKey="id", OtherKey="idTypZ")]
+		public EntitySet<relVmTypZ> relVmTypZs
+		{
+			get
+			{
+				return this._relVmTypZs;
+			}
+			set
+			{
+				this._relVmTypZs.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1720,6 +1786,18 @@ namespace DataModel
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_relVmTypZs(relVmTypZ entity)
+		{
+			this.SendPropertyChanging();
+			entity.typZamest = this;
+		}
+		
+		private void detach_relVmTypZs(relVmTypZ entity)
+		{
+			this.SendPropertyChanging();
+			entity.typZamest = null;
 		}
 	}
 	
@@ -1861,6 +1939,390 @@ namespace DataModel
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.relVmJazyk")]
+	public partial class relVmJazyk : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _idVM;
+		
+		private int _idJazyk;
+		
+		private EntityRef<jazyk> _jazyk;
+		
+		private EntityRef<VM> _VM;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnidVMChanging(int value);
+    partial void OnidVMChanged();
+    partial void OnidJazykChanging(int value);
+    partial void OnidJazykChanged();
+    #endregion
+		
+		public relVmJazyk()
+		{
+			this._jazyk = default(EntityRef<jazyk>);
+			this._VM = default(EntityRef<VM>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idVM", DbType="Int NOT NULL")]
+		public int idVM
+		{
+			get
+			{
+				return this._idVM;
+			}
+			set
+			{
+				if ((this._idVM != value))
+				{
+					if (this._VM.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidVMChanging(value);
+					this.SendPropertyChanging();
+					this._idVM = value;
+					this.SendPropertyChanged("idVM");
+					this.OnidVMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idJazyk", DbType="Int NOT NULL")]
+		public int idJazyk
+		{
+			get
+			{
+				return this._idJazyk;
+			}
+			set
+			{
+				if ((this._idJazyk != value))
+				{
+					if (this._jazyk.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidJazykChanging(value);
+					this.SendPropertyChanging();
+					this._idJazyk = value;
+					this.SendPropertyChanged("idJazyk");
+					this.OnidJazykChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="jazyk_relVmJazyk", Storage="_jazyk", ThisKey="idJazyk", OtherKey="id", IsForeignKey=true)]
+		public jazyk jazyk
+		{
+			get
+			{
+				return this._jazyk.Entity;
+			}
+			set
+			{
+				jazyk previousValue = this._jazyk.Entity;
+				if (((previousValue != value) 
+							|| (this._jazyk.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._jazyk.Entity = null;
+						previousValue.relVmJazyks.Remove(this);
+					}
+					this._jazyk.Entity = value;
+					if ((value != null))
+					{
+						value.relVmJazyks.Add(this);
+						this._idJazyk = value.id;
+					}
+					else
+					{
+						this._idJazyk = default(int);
+					}
+					this.SendPropertyChanged("jazyk");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VM_relVmJazyk", Storage="_VM", ThisKey="idVM", OtherKey="id", IsForeignKey=true)]
+		public VM VM
+		{
+			get
+			{
+				return this._VM.Entity;
+			}
+			set
+			{
+				VM previousValue = this._VM.Entity;
+				if (((previousValue != value) 
+							|| (this._VM.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._VM.Entity = null;
+						previousValue.relVmJazyks.Remove(this);
+					}
+					this._VM.Entity = value;
+					if ((value != null))
+					{
+						value.relVmJazyks.Add(this);
+						this._idVM = value.id;
+					}
+					else
+					{
+						this._idVM = default(int);
+					}
+					this.SendPropertyChanged("VM");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.relVmTypZ")]
+	public partial class relVmTypZ : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _idVM;
+		
+		private int _idTypZ;
+		
+		private EntityRef<typZamest> _typZamest;
+		
+		private EntityRef<VM> _VM;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnidVMChanging(int value);
+    partial void OnidVMChanged();
+    partial void OnidTypZChanging(int value);
+    partial void OnidTypZChanged();
+    #endregion
+		
+		public relVmTypZ()
+		{
+			this._typZamest = default(EntityRef<typZamest>);
+			this._VM = default(EntityRef<VM>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idVM", DbType="Int NOT NULL")]
+		public int idVM
+		{
+			get
+			{
+				return this._idVM;
+			}
+			set
+			{
+				if ((this._idVM != value))
+				{
+					if (this._VM.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidVMChanging(value);
+					this.SendPropertyChanging();
+					this._idVM = value;
+					this.SendPropertyChanged("idVM");
+					this.OnidVMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTypZ", DbType="Int NOT NULL")]
+		public int idTypZ
+		{
+			get
+			{
+				return this._idTypZ;
+			}
+			set
+			{
+				if ((this._idTypZ != value))
+				{
+					if (this._typZamest.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidTypZChanging(value);
+					this.SendPropertyChanging();
+					this._idTypZ = value;
+					this.SendPropertyChanged("idTypZ");
+					this.OnidTypZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="typZamest_relVmTypZ", Storage="_typZamest", ThisKey="idTypZ", OtherKey="id", IsForeignKey=true)]
+		public typZamest typZamest
+		{
+			get
+			{
+				return this._typZamest.Entity;
+			}
+			set
+			{
+				typZamest previousValue = this._typZamest.Entity;
+				if (((previousValue != value) 
+							|| (this._typZamest.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._typZamest.Entity = null;
+						previousValue.relVmTypZs.Remove(this);
+					}
+					this._typZamest.Entity = value;
+					if ((value != null))
+					{
+						value.relVmTypZs.Add(this);
+						this._idTypZ = value.id;
+					}
+					else
+					{
+						this._idTypZ = default(int);
+					}
+					this.SendPropertyChanged("typZamest");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VM_relVmTypZ", Storage="_VM", ThisKey="idVM", OtherKey="id", IsForeignKey=true)]
+		public VM VM
+		{
+			get
+			{
+				return this._VM.Entity;
+			}
+			set
+			{
+				VM previousValue = this._VM.Entity;
+				if (((previousValue != value) 
+							|| (this._VM.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._VM.Entity = null;
+						previousValue.relVmTypZs.Remove(this);
+					}
+					this._VM.Entity = value;
+					if ((value != null))
+					{
+						value.relVmTypZs.Add(this);
+						this._idVM = value.id;
+					}
+					else
+					{
+						this._idVM = default(int);
+					}
+					this.SendPropertyChanged("VM");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VM")]
 	public partial class VM : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1895,8 +2357,6 @@ namespace DataModel
 		
 		private System.Nullable<System.DateTime> _terminDo;
 		
-		private string _idTyp;
-		
 		private int _idUP;
 		
 		private System.Nullable<int> _modryKarty;
@@ -1907,9 +2367,11 @@ namespace DataModel
 		
 		private int _volnychMist;
 		
-		private string _idJazyka;
-		
 		private string _poznamka;
+		
+		private EntitySet<relVmJazyk> _relVmJazyks;
+		
+		private EntitySet<relVmTypZ> _relVmTypZs;
 		
 		private EntityRef<prof> _prof;
 		
@@ -1947,8 +2409,6 @@ namespace DataModel
     partial void OnterminOdChanged();
     partial void OnterminDoChanging(System.Nullable<System.DateTime> value);
     partial void OnterminDoChanged();
-    partial void OnidTypChanging(string value);
-    partial void OnidTypChanged();
     partial void OnidUPChanging(int value);
     partial void OnidUPChanged();
     partial void OnmodryKartyChanging(System.Nullable<int> value);
@@ -1959,14 +2419,14 @@ namespace DataModel
     partial void OndateAktualChanged();
     partial void OnvolnychMistChanging(int value);
     partial void OnvolnychMistChanged();
-    partial void OnidJazykaChanging(string value);
-    partial void OnidJazykaChanged();
     partial void OnpoznamkaChanging(string value);
     partial void OnpoznamkaChanged();
     #endregion
 		
 		public VM()
 		{
+			this._relVmJazyks = new EntitySet<relVmJazyk>(new Action<relVmJazyk>(this.attach_relVmJazyks), new Action<relVmJazyk>(this.detach_relVmJazyks));
+			this._relVmTypZs = new EntitySet<relVmTypZ>(new Action<relVmTypZ>(this.attach_relVmTypZs), new Action<relVmTypZ>(this.detach_relVmTypZs));
 			this._prof = default(EntityRef<prof>);
 			this._uradPrace = default(EntityRef<uradPrace>);
 			OnCreated();
@@ -2256,26 +2716,6 @@ namespace DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTyp", DbType="NVarChar(50)")]
-		public string idTyp
-		{
-			get
-			{
-				return this._idTyp;
-			}
-			set
-			{
-				if ((this._idTyp != value))
-				{
-					this.OnidTypChanging(value);
-					this.SendPropertyChanging();
-					this._idTyp = value;
-					this.SendPropertyChanged("idTyp");
-					this.OnidTypChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idUP", DbType="Int NOT NULL")]
 		public int idUP
 		{
@@ -2380,26 +2820,6 @@ namespace DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idJazyka", DbType="NVarChar(50)")]
-		public string idJazyka
-		{
-			get
-			{
-				return this._idJazyka;
-			}
-			set
-			{
-				if ((this._idJazyka != value))
-				{
-					this.OnidJazykaChanging(value);
-					this.SendPropertyChanging();
-					this._idJazyka = value;
-					this.SendPropertyChanged("idJazyka");
-					this.OnidJazykaChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_poznamka", DbType="NVarChar(MAX)")]
 		public string poznamka
 		{
@@ -2417,6 +2837,32 @@ namespace DataModel
 					this.SendPropertyChanged("poznamka");
 					this.OnpoznamkaChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VM_relVmJazyk", Storage="_relVmJazyks", ThisKey="id", OtherKey="idVM")]
+		public EntitySet<relVmJazyk> relVmJazyks
+		{
+			get
+			{
+				return this._relVmJazyks;
+			}
+			set
+			{
+				this._relVmJazyks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VM_relVmTypZ", Storage="_relVmTypZs", ThisKey="id", OtherKey="idVM")]
+		public EntitySet<relVmTypZ> relVmTypZs
+		{
+			get
+			{
+				return this._relVmTypZs;
+			}
+			set
+			{
+				this._relVmTypZs.Assign(value);
 			}
 		}
 		
@@ -2506,6 +2952,30 @@ namespace DataModel
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_relVmJazyks(relVmJazyk entity)
+		{
+			this.SendPropertyChanging();
+			entity.VM = this;
+		}
+		
+		private void detach_relVmJazyks(relVmJazyk entity)
+		{
+			this.SendPropertyChanging();
+			entity.VM = null;
+		}
+		
+		private void attach_relVmTypZs(relVmTypZ entity)
+		{
+			this.SendPropertyChanging();
+			entity.VM = this;
+		}
+		
+		private void detach_relVmTypZs(relVmTypZ entity)
+		{
+			this.SendPropertyChanging();
+			entity.VM = null;
 		}
 	}
 }

@@ -236,11 +236,9 @@ namespace DataModel
                 VM newVM = new VM
                 {
                     idObce = coobec,
-                    idJazyka = jazyk,
                     idPracVztah = pracVztah,
                     idProf = prof,
                     idSmena = smena,
-                    idTyp = typZ,
                     idUP = uradPrace,
                     idVzdelani = vzdelani,
                     dateAktual = aktualDate,
@@ -259,6 +257,31 @@ namespace DataModel
                 if (praceDo.Year != 2015) { newVM.terminDo = praceDo; }
                 context.VMs.InsertOnSubmit(newVM);
                 context.SubmitChanges();
+
+                if (jazyk != "")
+                {
+                    string[] jaz = jazyk.Split(',');
+                    foreach(string j in jaz)
+                    {
+                        if (j.Trim() != "")
+                        {
+                            saveRelVMJazyk(newVM.id, Int32.Parse(j.Trim()));
+                        }
+                    }
+                }
+
+                if (typZ != "")
+                {
+                    string[] tz = typZ.Split(',');
+                    foreach (string t in tz)
+                    {
+                        if (t.Trim() != "")
+                        {
+                            saveRelVMType(newVM.id, Int32.Parse(t.Trim()));
+                        }
+                    }
+                }
+
                 return true;
             }
             catch(Exception ex)
@@ -278,6 +301,34 @@ namespace DataModel
             else
             {
                 return false;
+            }
+        }
+
+        public static void saveRelVMJazyk(int vm, int jazyk)
+        {
+            using (dataClassWorkDataContext context = new dataClassWorkDataContext())
+            {
+                relVmJazyk newrel = new relVmJazyk()
+                {
+                    idVM = vm,
+                    idJazyk = jazyk
+                };
+                context.relVmJazyks.InsertOnSubmit(newrel);
+                context.SubmitChanges();
+            }
+        }
+
+        public static void saveRelVMType(int vm, int type)
+        {
+            using (dataClassWorkDataContext context = new dataClassWorkDataContext())
+            {
+                relVmTypZ newrel = new relVmTypZ()
+                {
+                    idVM = vm,
+                    idTypZ= type
+                };
+                context.relVmTypZs.InsertOnSubmit(newrel);
+                context.SubmitChanges();
             }
         }
 

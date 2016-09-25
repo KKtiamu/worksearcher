@@ -67,7 +67,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="startData\data.sql" />
+    <Content Include="startData\insert.sql" />
+    <Content Include="startData\schema.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
