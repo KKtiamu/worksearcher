@@ -143,4 +143,78 @@
       <Association Name="uradPrace_VM" Member="uradPrace" ThisKey="idUP" OtherKey="id" Type="uradPrace" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.SelectOkres" Method="SelectOkres">
+    <Parameter Name="okres" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SelectOkresResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SelectJazyk" Method="SelectJazyk">
+    <Parameter Name="jazyk" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SelectJazykResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="uroven" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SelectObor" Method="SelectObor">
+    <Parameter Name="obor" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SelectOborResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SelectSmeny" Method="SelectSmeny">
+    <Parameter Name="smeny" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SelectSmenyResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SelectVzdelani" Method="SelectVzdelani">
+    <Parameter Name="vzdelani" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SelectVzdelaniResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SelectVM" Method="SelectVM">
+    <Parameter Name="VM" Parameter="vM" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SelectVMResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="kodUP" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="idProf" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="firma" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="idSmena" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idVzdelani" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idPracVztah" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="idObce" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="kontakt" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="mzdaOd" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="mzdaDo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="mzdaType" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="terminOd" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="terminDo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="idUP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="modryKarty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="zamestnKarty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dateAktual" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="volnychMist" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="poznamka" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SelectProfByObor" Method="SelectProfByObor">
+    <Parameter Name="obor" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SelectProfByOborResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SelectVMByJazyk" Method="SelectVMByJazyk">
+    <Parameter Name="jazyk" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SelectVMByJazykResult">
+      <Column Name="idVM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

@@ -226,6 +226,62 @@ namespace DataModel
 				return this.GetTable<VM>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectOkres")]
+		public ISingleResult<SelectOkresResult> SelectOkres([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> okres)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), okres);
+			return ((ISingleResult<SelectOkresResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectJazyk")]
+		public ISingleResult<SelectJazykResult> SelectJazyk([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> jazyk)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), jazyk);
+			return ((ISingleResult<SelectJazykResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectObor")]
+		public ISingleResult<SelectOborResult> SelectObor([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> obor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), obor);
+			return ((ISingleResult<SelectOborResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectSmeny")]
+		public ISingleResult<SelectSmenyResult> SelectSmeny([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> smeny)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), smeny);
+			return ((ISingleResult<SelectSmenyResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectVzdelani")]
+		public ISingleResult<SelectVzdelaniResult> SelectVzdelani([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> vzdelani)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), vzdelani);
+			return ((ISingleResult<SelectVzdelaniResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectVM")]
+		public ISingleResult<SelectVMResult> SelectVM([global::System.Data.Linq.Mapping.ParameterAttribute(Name="VM", DbType="Int")] System.Nullable<int> vM)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), vM);
+			return ((ISingleResult<SelectVMResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectProfByObor")]
+		public ISingleResult<SelectProfByOborResult> SelectProfByObor([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> obor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), obor);
+			return ((ISingleResult<SelectProfByOborResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectVMByJazyk")]
+		public ISingleResult<SelectVMByJazykResult> SelectVMByJazyk([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> jazyk)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), jazyk);
+			return ((ISingleResult<SelectVMByJazykResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.coobec")]
@@ -2976,6 +3032,682 @@ namespace DataModel
 		{
 			this.SendPropertyChanging();
 			entity.VM = null;
+		}
+	}
+	
+	public partial class SelectOkresResult
+	{
+		
+		private int _id;
+		
+		private string _name;
+		
+		public SelectOkresResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SelectJazykResult
+	{
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _uroven;
+		
+		public SelectJazykResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uroven", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string uroven
+		{
+			get
+			{
+				return this._uroven;
+			}
+			set
+			{
+				if ((this._uroven != value))
+				{
+					this._uroven = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SelectOborResult
+	{
+		
+		private int _id;
+		
+		private string _name;
+		
+		public SelectOborResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SelectSmenyResult
+	{
+		
+		private int _id;
+		
+		private string _name;
+		
+		public SelectSmenyResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SelectVzdelaniResult
+	{
+		
+		private int _id;
+		
+		private string _name;
+		
+		public SelectVzdelaniResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(250)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SelectVMResult
+	{
+		
+		private int _id;
+		
+		private string _kodUP;
+		
+		private int _idProf;
+		
+		private string _firma;
+		
+		private System.Nullable<int> _idSmena;
+		
+		private System.Nullable<int> _idVzdelani;
+		
+		private string _idPracVztah;
+		
+		private string _idObce;
+		
+		private string _kontakt;
+		
+		private System.Nullable<decimal> _mzdaOd;
+		
+		private System.Nullable<decimal> _mzdaDo;
+		
+		private string _mzdaType;
+		
+		private System.Nullable<System.DateTime> _terminOd;
+		
+		private System.Nullable<System.DateTime> _terminDo;
+		
+		private int _idUP;
+		
+		private System.Nullable<int> _modryKarty;
+		
+		private System.Nullable<int> _zamestnKarty;
+		
+		private System.Nullable<System.DateTime> _dateAktual;
+		
+		private int _volnychMist;
+		
+		private string _poznamka;
+		
+		public SelectVMResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kodUP", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string kodUP
+		{
+			get
+			{
+				return this._kodUP;
+			}
+			set
+			{
+				if ((this._kodUP != value))
+				{
+					this._kodUP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProf", DbType="Int NOT NULL")]
+		public int idProf
+		{
+			get
+			{
+				return this._idProf;
+			}
+			set
+			{
+				if ((this._idProf != value))
+				{
+					this._idProf = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_firma", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string firma
+		{
+			get
+			{
+				return this._firma;
+			}
+			set
+			{
+				if ((this._firma != value))
+				{
+					this._firma = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idSmena", DbType="Int")]
+		public System.Nullable<int> idSmena
+		{
+			get
+			{
+				return this._idSmena;
+			}
+			set
+			{
+				if ((this._idSmena != value))
+				{
+					this._idSmena = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idVzdelani", DbType="Int")]
+		public System.Nullable<int> idVzdelani
+		{
+			get
+			{
+				return this._idVzdelani;
+			}
+			set
+			{
+				if ((this._idVzdelani != value))
+				{
+					this._idVzdelani = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPracVztah", DbType="NVarChar(50)")]
+		public string idPracVztah
+		{
+			get
+			{
+				return this._idPracVztah;
+			}
+			set
+			{
+				if ((this._idPracVztah != value))
+				{
+					this._idPracVztah = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idObce", DbType="NVarChar(30)")]
+		public string idObce
+		{
+			get
+			{
+				return this._idObce;
+			}
+			set
+			{
+				if ((this._idObce != value))
+				{
+					this._idObce = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kontakt", DbType="NVarChar(250)")]
+		public string kontakt
+		{
+			get
+			{
+				return this._kontakt;
+			}
+			set
+			{
+				if ((this._kontakt != value))
+				{
+					this._kontakt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mzdaOd", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> mzdaOd
+		{
+			get
+			{
+				return this._mzdaOd;
+			}
+			set
+			{
+				if ((this._mzdaOd != value))
+				{
+					this._mzdaOd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mzdaDo", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> mzdaDo
+		{
+			get
+			{
+				return this._mzdaDo;
+			}
+			set
+			{
+				if ((this._mzdaDo != value))
+				{
+					this._mzdaDo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mzdaType", DbType="NVarChar(10)")]
+		public string mzdaType
+		{
+			get
+			{
+				return this._mzdaType;
+			}
+			set
+			{
+				if ((this._mzdaType != value))
+				{
+					this._mzdaType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_terminOd", DbType="Date")]
+		public System.Nullable<System.DateTime> terminOd
+		{
+			get
+			{
+				return this._terminOd;
+			}
+			set
+			{
+				if ((this._terminOd != value))
+				{
+					this._terminOd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_terminDo", DbType="Date")]
+		public System.Nullable<System.DateTime> terminDo
+		{
+			get
+			{
+				return this._terminDo;
+			}
+			set
+			{
+				if ((this._terminDo != value))
+				{
+					this._terminDo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idUP", DbType="Int NOT NULL")]
+		public int idUP
+		{
+			get
+			{
+				return this._idUP;
+			}
+			set
+			{
+				if ((this._idUP != value))
+				{
+					this._idUP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_modryKarty", DbType="Int")]
+		public System.Nullable<int> modryKarty
+		{
+			get
+			{
+				return this._modryKarty;
+			}
+			set
+			{
+				if ((this._modryKarty != value))
+				{
+					this._modryKarty = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_zamestnKarty", DbType="Int")]
+		public System.Nullable<int> zamestnKarty
+		{
+			get
+			{
+				return this._zamestnKarty;
+			}
+			set
+			{
+				if ((this._zamestnKarty != value))
+				{
+					this._zamestnKarty = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateAktual", DbType="Date")]
+		public System.Nullable<System.DateTime> dateAktual
+		{
+			get
+			{
+				return this._dateAktual;
+			}
+			set
+			{
+				if ((this._dateAktual != value))
+				{
+					this._dateAktual = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_volnychMist", DbType="Int NOT NULL")]
+		public int volnychMist
+		{
+			get
+			{
+				return this._volnychMist;
+			}
+			set
+			{
+				if ((this._volnychMist != value))
+				{
+					this._volnychMist = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_poznamka", DbType="NVarChar(MAX)")]
+		public string poznamka
+		{
+			get
+			{
+				return this._poznamka;
+			}
+			set
+			{
+				if ((this._poznamka != value))
+				{
+					this._poznamka = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SelectProfByOborResult
+	{
+		
+		private int _id;
+		
+		private string _name;
+		
+		public SelectProfByOborResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(250)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SelectVMByJazykResult
+	{
+		
+		private int _idVM;
+		
+		public SelectVMByJazykResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idVM", DbType="Int NOT NULL")]
+		public int idVM
+		{
+			get
+			{
+				return this._idVM;
+			}
+			set
+			{
+				if ((this._idVM != value))
+				{
+					this._idVM = value;
+				}
+			}
 		}
 	}
 }

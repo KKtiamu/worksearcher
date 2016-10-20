@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataModel</RootNamespace>
     <AssemblyName>DataModel</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Searcher.cs" />
     <Compile Include="VolneMistaBLL.cs" />
     <Compile Include="dataClassWork.designer.cs">
       <AutoGen>True</AutoGen>
@@ -68,6 +70,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="startData\insert.sql" />
+    <Content Include="startData\procedure\selectVMBYJazyk.sql" />
+    <Content Include="startData\procedure\selectJazyk.sql" />
+    <Content Include="startData\procedure\selectProf.sql" />
+    <Content Include="startData\procedure\selectVM.sql" />
+    <Content Include="startData\procedure\selectSmeny.sql" />
+    <Content Include="startData\procedure\selectVzdelani.sql" />
+    <Content Include="startData\procedure\selectOkres.sql" />
+    <Content Include="startData\procedure\selectObor.sql" />
     <Content Include="startData\schema.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +88,7 @@
       <DependentUpon>dataClassWork.dbml</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

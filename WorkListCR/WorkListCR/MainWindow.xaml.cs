@@ -24,5 +24,12 @@ namespace WorkListCR
         {
             InitializeComponent();
         }
+
+        private void buttonSearcher_Click(object sender, RoutedEventArgs e)
+        {
+            Searcher newWindow = new Searcher();
+            newWindow.Show();
+            this.Close();
+        }
     }
 }
